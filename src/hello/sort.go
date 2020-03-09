@@ -6,13 +6,61 @@ import (
 
 func main() {
 	number := []int{5, 7, 6, 2, 4}
-	BubbleSort(number)
+	//BubbleSort(number)
 	//SelectSort(number)
 	//InsertSortOne(number)
 	//ShllSort(number)
 	//QuickSort(number, 0, len(number)-1)
-	//fmt.Println(number)
+	//mergeSort(number)
+	fmt.Println(number)
 }
+/**
+ * 归并排序
+ */
+func mergeSort(num []int)  {
+	sort(num, 0, len(num) -1 )
+}
+func sort(num[] int, left, right int)  {
+	if left > right {
+		return
+	}
+	mid := (left + right)/2
+	sort(num, left, mid)
+	sort(num, mid+1, right)
+	merge(num, left, mid, right)
+}
+
+func merge(num []int, left, mid, right int)  {
+	tmp := make([]int, right-left +1)
+	p1 := left
+	p2 := mid +1
+	p :=0
+
+	for p1 <= mid && p2 <= right {
+		if num[p1] < num[p2] {
+			tmp[p] = num[p1]
+			p1 ++
+		} else {
+			tmp[p] = num[p2]
+			p2 ++
+		}
+		p ++
+	}
+
+	for p1 <= mid {
+		tmp[p] = num[p1]
+		p1 ++
+		p ++
+	}
+
+	for p2 <= right {
+		tmp[p] = num[p2]
+		p2 ++
+		p ++
+	}
+}
+
+
 
 /**
  * 1.冒泡排序--稳定
